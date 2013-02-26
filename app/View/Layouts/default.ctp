@@ -48,7 +48,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                         <li><?php echo $this->Html->link(__("Ajouter un ami"), array('controller' => 'friends', 'action' => 'add')); ?></li>
                          <li><?php echo $this->Html->link(__("Envoyer un message"), array('controller' => 'messages', 'action' => 'add')); ?></li>
                           <li><?php echo $this->Html->link(__("Ma messagerie"), array('controller' => 'messages', 'action' => 'index')); ?></li>
-                        <li><?php echo $this->Html->link(__("Mon profil"), array('controller' => 'users', 'action' => 'view/'.AuthComponent::user('id'))); ?></li>
+                          <li><?php echo $this->Html->link(__("Mes amis"), array('controller' => 'friends', 'action' => 'index')); ?></li>   <li><?php echo $this->Html->link(__("Mon profil"), array('controller' => 'users', 'action' => 'view/'.AuthComponent::user('id'))); ?></li>
                         <li><?php echo $this->Html->link(__("Voir les utilisateurs"), array('controller' => 'users', 'action' => 'index')); ?></li>
                 <?php endif; ?>
               </ul>

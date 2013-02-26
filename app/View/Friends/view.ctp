@@ -1,19 +1,19 @@
 <div class="friends view">
 <h2><?php  echo __('Friend'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
+<!-- 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($friend['Friend']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($friend['User']['username'], array('controller' => 'users', 'action' => 'view', $friend['User']['id'])); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Frd Id'); ?></dt>
 		<dd>
-			<?php echo h($friend['Friend']['frd_id']); ?>
+			<?php echo h($friend['Friend']['friend_id']); ?>
+			&nbsp;
+		</dd> -->
+		<dt><?php echo __('Nom de l\'ami'); ?></dt>
+		<dd>
+			<?php echo h($friend['Amis']['username']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Message'); ?></dt>
