@@ -7,6 +7,34 @@ App::uses('AppController', 'Controller');
  */
 class MessagesController extends AppController {
 
+
+
+		public function isAuthorized($user){
+		if($this->action=='add'){
+			if(isset($user['group_id']) && $user['group_id'] > 0)
+				return true;
+
+		}
+
+			if(in_array($this->action, array('edit','delete'))){
+				if(isset($user['group_id']) && $user['group_id'] == 2)
+					return true;
+
+				else{
+					$quote_id = $this->request->params['pass'][0];
+					$user_id = $user['id'];
+					                                
+					if($this->Quote->isOwnedBy($quote_id,$user_id)){
+       					 return true;
+				}
+
+				}
+			}
+
+
+	return parent::isAuthorized($user);
+}
+
 /**
  * index method
  *
@@ -40,6 +68,7 @@ class MessagesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Message->create();
+			$this->request->data['Message']['user_id'] = $this->Auth->user('id');
 			if ($this->Message->save($this->request->data)) {
 				$this->Session->setFlash(__('The message has been saved'));
 				$this->redirect(array('action' => 'index'));
@@ -48,7 +77,9 @@ class MessagesController extends AppController {
 			}
 		}
 		$users = $this->Message->User->find('list');
-		$this->set(compact('users'));
+		$dests = $this->Message->User->find('list');
+		$this->set(compact('users','dests'));
+
 	}
 
 /**
@@ -57,7 +88,7 @@ class MessagesController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- */
+ *//*
 	public function edit($id = null) {
 		if (!$this->Message->exists($id)) {
 			throw new NotFoundException(__('Invalid message'));
@@ -76,7 +107,7 @@ class MessagesController extends AppController {
 		$users = $this->Message->User->find('list');
 		$this->set(compact('users'));
 	}
-
+*/
 /**
  * delete method
  *
@@ -84,7 +115,7 @@ class MessagesController extends AppController {
  * @throws MethodNotAllowedException
  * @param string $id
  * @return void
- */
+ *//*
 	public function delete($id = null) {
 		$this->Message->id = $id;
 		if (!$this->Message->exists()) {
@@ -97,7 +128,7 @@ class MessagesController extends AppController {
 		}
 		$this->Session->setFlash(__('Message was not deleted'));
 		$this->redirect(array('action' => 'index'));
-	}
+	}*/
 
 /**
  * admin_index method

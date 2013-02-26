@@ -1,9 +1,9 @@
-<div class="messages form">
-<?php echo $this->Form->create('Message'); ?>
+<div class="friends form">
+<?php echo $this->Form->create('Friend'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Message'); ?></legend>
+		<legend><?php echo __('Add Friend'); ?></legend>
 	<?php
-		echo $this->Form->input('dest_id');
+		echo $this->Form->input('friend_id');
 		echo $this->Form->input('message');
 	?>
 	</fieldset>
@@ -13,7 +13,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Messages'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Friends'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>

@@ -72,6 +72,16 @@ p {
 	margin: 0 0 1em 0;
 }
 
+#container h3 a{
+	color: #fff;
+}
+
+.nav li a{
+	color:#fff;
+	text-decoration: none;
+	list-style: none;
+}
+
 /** Layout **/
 #container {
 	text-align: left;
@@ -92,6 +102,8 @@ p {
 	font-weight: normal;
 	text-decoration: none;
 }
+
+
 #header h1 a:hover {
 	color: #fff;
 	background: #003d4c;

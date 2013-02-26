@@ -48,7 +48,7 @@
 		</dd>
 		<dt><?php echo __('Picture'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($user['Picture']['id'], array('controller' => 'pictures', 'action' => 'view', $user['Picture']['id'])); ?>
+			<img src="<?php echo h($user['Picture']['url']); ?>" width="100px"/>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Level'); ?></dt>

@@ -10,7 +10,7 @@
 		echo $this->Form->input('background');
 		echo $this->Form->input('group_id');
 		echo $this->Form->input('race_id');
-		echo $this->Form->input('picture_id');
+		echo $this->Form->input('pictures');
 		echo $this->Form->input('level');
 		echo $this->Form->input('user_pseudo');
 	?>

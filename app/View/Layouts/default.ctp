@@ -38,9 +38,32 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
+		        <?php if(AuthComponent::user('id')): ?>
+                  <h3><?php echo $this->Html->link('Cakerollist - '.AuthComponent::user('username'), '/'); ?></h3> 
+               <?php else: ?>  
+                  <h3><?php echo $this->Html->link('Cakerollist', '/'); ?></h3> 
+               <?php endif; ?>
+              <ul class="nav">
+                <?php if(AuthComponent::user('id')): ?>
+                        <li><?php echo $this->Html->link(__("Ajouter un ami"), array('controller' => 'friends', 'action' => 'add')); ?></li>
+                         <li><?php echo $this->Html->link(__("Envoyer un message"), array('controller' => 'messages', 'action' => 'add')); ?></li>
+                          <li><?php echo $this->Html->link(__("Ma messagerie"), array('controller' => 'messages', 'action' => 'index')); ?></li>
+                        <li><?php echo $this->Html->link(__("Mon profil"), array('controller' => 'users', 'action' => 'view/'.AuthComponent::user('id'))); ?></li>
+                        <li><?php echo $this->Html->link(__("Voir les utilisateurs"), array('controller' => 'users', 'action' => 'index')); ?></li>
+                <?php endif; ?>
+              </ul>
+              <ul class="nav secondary-nav">
+                <?php if(AuthComponent::user('id')): ?>
+                    <li><?php echo $this->Html->link(__('Se déconnecter'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+                    <?php if(AuthComponent::user('group_id')==1): ?>
+                        <li><?php echo $this->Html->link(__('Espace admin'), array('controller' => 'admin', 'action' => 'quotes')); ?></li>
+                      <?php endif; ?>
+                <?php else: ?> 
+                    <li><?php echo $this->Html->link(__('Se connecter'), array('controller' => 'users', 'action' => 'login')); ?></li>
+                    <li><?php echo $this->Html->link("S'inscrire",array('action'=>'add','controller'=>'users')); ?></li>
+                    <?php endif; ?>
+              </ul>
+
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
