@@ -31,4 +31,10 @@ class Picture extends AppModel {
 		)
 	);
 
+	public function isOwnedBy($quote_id,$user_id){
+
+        return $this->field('id',array('id'=>$picture_id, 'user_id'=>$user_id)) === $picture_id;
+
+	}
+
 }
