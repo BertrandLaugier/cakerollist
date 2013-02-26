@@ -1,10 +1,9 @@
-<div class="messages form">
-<?php echo $this->Form->create('Message'); ?>
+<div class="xps form">
+<?php echo $this->Form->create('Xp'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Message'); ?></legend>
+		<legend><?php echo __('Add Xp'); ?></legend>
 	<?php
-		echo $this->Form->input('dest_id');
-		echo $this->Form->input('message');
+		echo $this->Form->input('xp');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -13,7 +12,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Messages'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Xps'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>

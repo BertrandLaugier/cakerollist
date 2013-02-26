@@ -4,7 +4,6 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('updated'); ?></th>
@@ -20,7 +19,6 @@
 	<tr>
 		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['updated']); ?>&nbsp;</td>
@@ -32,9 +30,9 @@
 			<?php echo $this->Html->link($user['Race']['name'], array('controller' => 'races', 'action' => 'view', $user['Race']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($user['Picture']['id'], array('controller' => 'pictures', 'action' => 'view', $user['Picture']['id'])); ?>
+			<img src="<?php echo h($user['Picture']['url']); ?>" width="100px"/>
 		</td>
-		<td><?php echo h($user['User']['level']); ?>&nbsp;</td>
+		<td><?php echo h($user['Xp']['id']-1); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['user_pseudo']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>

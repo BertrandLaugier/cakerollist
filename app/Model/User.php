@@ -54,6 +54,13 @@ public function beforeSave($options = array()) {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Xp' => array(
+			'className' => 'Xp',
+			'foreignKey' => 'xp_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 }

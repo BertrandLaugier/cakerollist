@@ -25,9 +25,6 @@ public function isAuthorized($user){
 		$me_id = $this->Auth->user('id');
 		if($user_id == $me_id)
 			return true;
-		else{
-			$this->Session->setFlash("try harder ;)");
-		}
 	}
 
 	if($this->action=='delete')
@@ -111,6 +108,7 @@ public function logout() {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
 				$this->redirect(array('action' => 'index'));

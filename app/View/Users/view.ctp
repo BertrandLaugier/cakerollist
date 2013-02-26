@@ -11,11 +11,6 @@
 			<?php echo h($user['User']['username']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['password']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['email']); ?>
@@ -48,12 +43,12 @@
 		</dd>
 		<dt><?php echo __('Picture'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($user['Picture']['id'], array('controller' => 'pictures', 'action' => 'view', $user['Picture']['id'])); ?>
+			<img src="<?php echo h($user['Picture']['url']); ?>" width="100px"/>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Level'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['level']); ?>
+			<?php echo h($user['User']['xp_id']-1); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('User Pseudo'); ?></dt>

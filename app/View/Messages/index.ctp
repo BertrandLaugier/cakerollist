@@ -11,11 +11,10 @@
 	</tr>
 	<?php foreach ($messages as $message): ?>
 	<tr>
+		<?php if(AuthComponent::user('id') && ($message['User']['id'] == AuthComponent::user('id')) || $message['Dest']['id'] == AuthComponent::user('id') ): ?>
 		<td><?php echo h($message['Message']['id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($message['User']['id'], array('controller' => 'users', 'action' => 'view', $message['User']['id'])); ?>
-		</td>
-		<td><?php echo h($message['Message']['dest_id']); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($message['User']['username'], array('controller' => 'users', 'action' => 'view', $message['Dest']['id'])); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($message['Dest']['username'], array('controller' => 'users', 'action' => 'view', $message['Dest']['id'])); ?>&nbsp;</td>
 		<td><?php echo h($message['Message']['message']); ?>&nbsp;</td>
 		<td><?php echo h($message['Message']['created']); ?>&nbsp;</td>
 		<td class="actions">
@@ -23,6 +22,7 @@
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $message['Message']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $message['Message']['id']), null, __('Are you sure you want to delete # %s?', $message['Message']['id'])); ?>
 		</td>
+		<?php endif; ?>
 	</tr>
 <?php endforeach; ?>
 	</table>
