@@ -32,7 +32,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		//echo $this->Html->css('cake.generic');
 		echo $this->Html->css('style');
 		echo $this->Html->css('http://fonts.googleapis.com/css?family=Metal+Mania');
-
+		echo $this->Html->css('http://fonts.googleapis.com/css?family=Pirata+One');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

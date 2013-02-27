@@ -1,15 +1,15 @@
-// style.less
+/*style.less*/
 // @author jr
 
 @import 'tools.less';
 @import 'reset.less';
 
-header{width: 100%;height: 40px;background-color: grey;background:url(../img/bg-wood-hover.png) repeat;box-shadow: inset 0 -5px 15px black;}
+header{width: 100%;height: 40px;background-color: grey;background:url(../img/bg-wood-hover.png) repeat;box-shadow: inset 0 -5px 15px black;position: fixed;}
 nav{height: 40px;width: 960px;margin:auto;}
 nav ul li{line-height: 40px;width: 120px;height: 40px;float: left;}
 nav ul li a{
 	text-decoration: none;
-	font-family: 'Metal Mania', cursive;
+	font-family: @Mania;
 	color: #FFD800;
 	text-align: center;
 	width: 120px;
@@ -20,9 +20,44 @@ nav ul li a{
 	-ms-transition:0.5s ease all;
 	-o-transition:0.5s ease all;
 }
-nav ul li:hover{background: url(../img/bg-wood.png) repeat;box-shadow: inset 0 0 10px black;}
-nav ul li a:hover{text-shadow: 0px 0px 20px #FFFA00;}
-#container{width: 960px;margin: auto;}
+/*nav ul li:hover{background: url(../img/bg-wood.png) repeat;box-shadow: inset 0 0 10px black;}*/
+nav ul li a:hover{text-shadow: 0px 0px 20px #FFFA00;color: #FFF0A5;}
+#container{width: 960px;margin: auto;padding-top: 60px;}
+
+table{background:rgba(255,230,91,0.2);}
+table tr th{
+	background: url(../img/dark_leather.png) repeat;
+	border: 1px solid #1E1008;
+	width: 400px;
+	box-shadow: inset 0 0 10px black;
+	color: white;
+	text-align: center;
+	font-family: @Pirata;
+	font-weight: 200;
+}
+table tr th a{color: white;text-decoration: none;line-height: 40px;text-align: center;}
+table tr td {text-align: center;font-family: @Pirata;font-weight: 200;border: 1px solid grey;}
+table tr td a{color: white;text-decoration: none;line-height: 40px;text-align: center;}
+
+form{width: 400px;
+	display: block;
+	margin: 10px 10px 0 30px;
+	float: left;
+	background:url(../img/bg-wood-hover.png) repeat;
+	border-radius:5px;
+	border: 1px solid #1E1008;
+	padding: 0 0 20px 0;
+	box-shadow: inset 0 0 10px black;
+}
+fieldset{width: 400px;}
+fieldset legend{color: white;width: 400px;height: 30px;line-height: 30px;font-family: @Mania;text-align: center;background: url(../img/dark_leather.png) repeat;border-bottom: 1px solid black;margin-bottom: 10px;box-shadow: inset 0 -5px 10px black;}
+form label{width: 200px;text-align: right;float:left;margin:8px 5px 0 0;font-family: @Pirata;text-shadow:1px 1px 1px #1E1008;}
+form textarea{margin-left: 0px;width: 150px;background-color: #FFE65B;border: 1px solid #1E1008;}
+form input{margin:10px 0 0 0;border-radius: 5px;border: 1px solid #1E1008;background-color: #FFE65B;}
+form input[type="submit"]{border: solid 1px black;width: 100px;padding:0px 0 0px 0;margin: 25px 0 0 160px;font-family: @Mania;font-size: 18px;background-color: #1E1008;color: white;}
+
+
+
 footer{width: 100%;background-color:black;height: 70px;position: absolute;bottom: 0px;box-shadow:0 -10px 10px black;}
 .footer-content{width: 960px;margin: auto;}
 .footer-content h3{color: white;}
