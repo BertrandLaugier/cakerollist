@@ -7,7 +7,14 @@ App::uses('AppModel', 'Model');
  */
 class Message extends AppModel {
 
+	public function afterSave($created){
 
+		if($created){
+			$this->getEventManager()->dispatch(new CakeEvent('Model.Message.add',$this));
+		}
+
+
+	}
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

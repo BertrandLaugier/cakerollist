@@ -66,6 +66,8 @@ class MessagesController extends AppController {
  * @return void
  */
 	public function add() {
+		App::uses('XpsEventListener','Event');
+		$this->Message->getEventManager()->attach( new XpsEventListener);
 		if ($this->request->is('post')) {
 			$this->Message->create();
 			$this->request->data['Message']['user_id'] = $this->Auth->user('id');
