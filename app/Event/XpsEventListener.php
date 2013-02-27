@@ -21,7 +21,48 @@
 			));
 			debug($count);
 
-
+			//$this->addXP($user_id,150);
 		}
+		
+		/**
+		 * addXP
+		 * add some xp in the database
+		 *
+		 * @param int $user_id 
+		 * @param int $xp XP to add
+		 * @return void
+		 * @author gaspard
+		 */
+		public function addXP($user_id,$xp){
+			
+			
+			
+			//$this->checkLevel($user_id);
+		}
+		
+		
+		/**
+		 * check level
+		 * check if the level is suited to the xp
+		 * 
+		 * @param int $user_id 
+		 * @return to determine
+		 * @author gaspard
+		 */
+		public function checkLevel($user_id){
+			$levels = array(100,150,225,350,500,100000);
+			/*
+			
+				if($xp > 100 && level < 2){
+					je passe à level 2
+				}
+				if($xp > 400 && level < 3){
+					je passe à level 3
+				}
+			*/
+			
+			
+		}
+		
 	}
  ?>
