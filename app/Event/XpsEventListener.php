@@ -16,12 +16,12 @@
 		public function userAddMessage($event){
 			$user_id = $event->subject()->data['Message']['user_id'];
 			$message = ClassRegistry:: init('Message');
-			$count = $message->find('count', array(
-				'conditions' => array('Message.user_id'=> $user_id)
+			$count = $message->find('first', array(
+				'conditions' => array('User.id'=> $user_id)
 			));
-			debug($count);
-
-			//$this->addXP($user_id,150);
+			
+			$xp = $count['User']['xp_nb'];
+			$this->addXP($user_id,150);
 		}
 		
 		/**
@@ -36,7 +36,7 @@
 		public function addXP($user_id,$xp){
 			
 			
-			
+			debug($xp);
 			//$this->checkLevel($user_id);
 		}
 		
