@@ -29,8 +29,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		//echo $this->Html->css('cake.generic');
 		echo $this->Html->css('style');
+		echo $this->Html->css('http://fonts.googleapis.com/css?family=Metal+Mania');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -38,10 +39,19 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
+	<?php /*echo $this->Html->link($cakeDescription, 'http://cakephp.org');*/?>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="#">Titre 1</a></li>
+				<li><a href="#">Titre 2</a></li>
+				<li><a href="#">Titre 3</a></li>
+				<li><a href="#">Titre 4</a></li>
+				<li><a href="#">Titre 5</a></li>
+			</ul>
+		</nav>
+	</header>
 	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
@@ -57,6 +67,17 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<footer>
+		<div class="footer-content">
+			<h3>Follow us on :</h3>
+			<ul>
+				<li><a href="#"><img src="img/facebook.png"></a></li>
+				<li><a href="#"><img src="img/twitter.png"></a></li>
+				<li><a href="#"><img src="img/google.png"></a></li>
+				<li><a href="#"><img src="img/youtube.png"></a></li>
+				<li><a href="#"><img src="img/fluxrss.png"></a></li>
+			</ul>
+		</div>
+	</footer>
 </body>
 </html>
