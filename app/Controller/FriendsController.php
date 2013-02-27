@@ -70,8 +70,10 @@ class FriendsController extends AppController {
 			$this->Friend->create();
 			$this->request->data['Friend']['user_id'] = $this->Auth->user('id');
 			if ($this->Friend->save($this->request->data)) {
-				$this->Session->setFlash(__('The friend has been saved'));
+				$this->Session->setFlash(__('La demande d\'ajout a bien été envoyée'));
 				$this->redirect(array('action' => 'index'));
+/*				$accept = new valid_friend();
+				$accept->Friend->User*/
 			} else {
 				$this->Session->setFlash(__('The friend could not be saved. Please, try again.'));
 			}

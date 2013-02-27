@@ -1,10 +1,39 @@
 <div class="friends index">
 	<h2><?php echo __('Friends'); ?></h2>
+
+</table>
+<table cellpadding="0" cellspacing="0">
+
+	<tr>
+			<th><?php echo "Requête(s)"; ?></th>
+			<th><?php echo "Demande"; ?></th>
+			<th><?php echo "Date"; ?></th>
+			<th class="actions"><?php echo __('Actions'); ?></th>
+	</tr>
+
+	<?php foreach ($friends as $friend): ?>
+	<?php if(AuthComponent::user('id') && ($friend['Friend']['username'] == AuthComponent::user('id')) || $friend['Amis']['id'] == AuthComponent::user('id') ): ?>
+	<tr>
+
+		<td><?php echo $this->Html->link($friend['User']['friend_id'], array('controller' => 'users', 'action' => 'view', $friend['Amis']['id'])); ?>&nbsp;</td>
+		<td><?php echo h($friend['Friend']['message']); ?>&nbsp;</td>
+		<td><?php echo h($friend['Friend']['created']); ?>&nbsp;</td>
+		<td class="actions">
+			<?php echo $this->Html->link(__('Voir'), array('action' => 'view', $friend['Friend']['id'])); ?>
+			<?php echo $this->Html->link(__('Accepter'), array('action' => 'validate', $friend['Friend']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Refuser'), array('action' => 'delete', $friend['Friend']['id']), null, __('Are you sure you want to delete # %s?', $friend['Friend']['id'])); ?>
+		</td>
+	</tr>
+<?php endif; ?>
+<?php endforeach; ?>
+
+	</table>
+
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 <!-- 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_id'); ?></th> -->
-			<th><?php echo $this->Paginator->sort('friend_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('friend_id','Amis'); ?></th>
 			<th><?php echo $this->Paginator->sort('message'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -27,8 +56,8 @@
 	</tr>
 <?php endif; ?>
 <?php endforeach; ?>
+</table>
 
-	</table>
 	<p>
 	<?php
 	echo $this->Paginator->counter(array(
