@@ -13,8 +13,6 @@ App::uses('AuthComponent', 'Controller/Component');
 
 
 class User extends AppModel {
-
-
 public $displayField = 'username';
 
 

@@ -9,13 +9,15 @@
 		echo $this->Form->input('background');
 		echo $this->Form->input('group_id');
 		echo $this->Form->input('race_id');
-		echo $this->Form->input('picture_id');
 		echo $this->Form->input('level');
 		echo $this->Form->input('user_pseudo');
 	?>
+	<?php echo $this->Form->end(__('Submit')); ?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
 </div>
+
+
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

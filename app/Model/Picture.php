@@ -16,6 +16,17 @@ class Picture extends AppModel {
  * @var array
  */
 
+	public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+
+	);
+
 
 	public function isOwnedBy($picture_id,$user_id){
 

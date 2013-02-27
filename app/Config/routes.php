@@ -36,6 +36,7 @@
  * how to customize the loading of plugin routes.
  */
 	CakePlugin::routes();
+	 CakePlugin::loadAll(); // Loads all plugins at once
 
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use

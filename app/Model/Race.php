@@ -13,7 +13,7 @@ class Race extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
-
+public $actAs = array('Containable','Media.Media');
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

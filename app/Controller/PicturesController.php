@@ -183,3 +183,5 @@ class PicturesController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 }
+
+

@@ -104,12 +104,14 @@ public function logout() {
  * @return void
  */
 	public function edit($id = null) {
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-
-			if ($this->User->save($this->request->data)) {
+			debug($this->request->data);
+			die();
+			if ($this->User->save($this->request->data['User'])) {
 				$this->Session->setFlash(__('The user has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -121,7 +123,8 @@ public function logout() {
 		}
 		$groups = $this->User->Group->find('list');
 		$races = $this->User->Race->find('list');
-		$pictures = $this->User->Picture->find('list');
+		$pictures = $this->User->Picture->find('all');
+		$picture_profil = $this->request->data['Picture'];
 		$this->set(compact('groups', 'races', 'pictures'));
 	}
 
