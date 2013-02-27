@@ -85,7 +85,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-
 	</div><!-- /.container-->
 	<footer>
 		<div class="footer-content">
