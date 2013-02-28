@@ -39,45 +39,35 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<?php /*echo $this->Html->link($cakeDescription, 'http://cakephp.org');*/?>
 	<header>
 		<nav>
 			<ul>
-				<li><a href="#">Titre 1</a></li>
-				<li><a href="#">Titre 2</a></li>
-				<li><a href="#">Titre 3</a></li>
-				<li><a href="#">Titre 4</a></li>
-				<li><a href="#">Titre 5</a></li>
+		        <?php if(AuthComponent::user('id')): ?>
+                 <li> <h3><?php echo $this->Html->link('Cakerollist - '.AuthComponent::user('username'), '/'); ?></h3> </li>
+               <?php else: ?>  
+                 <li> <h3><?php echo $this->Html->link('Cakerollist', '/'); ?></h3> </li>
+               <?php endif; ?>
+                <?php if(AuthComponent::user('id')): ?>
+                        <li><?php echo $this->Html->link(__("Ajouter un ami"), array('controller' => 'friends', 'action' => 'add')); ?></li>
+                         <li><?php echo $this->Html->link(__("Envoyer un message"), array('controller' => 'messages', 'action' => 'add')); ?></li>
+                          <li><?php echo $this->Html->link(__("Ma messagerie"), array('controller' => 'messages', 'action' => 'index')); ?></li>
+                        <li><?php echo $this->Html->link(__("Mon profil"), array('controller' => 'users', 'action' => 'view/'.AuthComponent::user('id'))); ?></li>
+                        <li><?php echo $this->Html->link(__("Voir les utilisateurs"), array('controller' => 'users', 'action' => 'index')); ?></li>
+                <?php endif; ?>
+                <?php if(AuthComponent::user('id')): ?>
+                    <li><?php echo $this->Html->link(__('Se déconnecter'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+                    <?php if(AuthComponent::user('group_id')==1): ?>
+                        <li><?php echo $this->Html->link(__('Espace admin'), array('controller' => 'admin', 'action' => 'quotes')); ?></li>
+                      <?php endif; ?>
+                <?php else: ?> 
+                    <li><?php echo $this->Html->link(__('Se connecter'), array('controller' => 'users', 'action' => 'login')); ?></li>
+                    <li><?php echo $this->Html->link("S'inscrire",array('action'=>'add','controller'=>'users')); ?></li>
+                    <?php endif; ?>
 			</ul>
 		</nav>
 	</header>
-	<div id="container">
-		<?php if(AuthComponent::user('id')): ?>
-		  <h3><?php echo $this->Html->link('Cakerollist - '.AuthComponent::user('username'), '/'); ?></h3> 
-		<?php else: ?>  
-		  <h3><?php echo $this->Html->link('Cakerollist', '/'); ?></h3> 
-		<?php endif; ?>
-		<ul class="nav">
-		<?php if(AuthComponent::user('id')): ?>
-		        <li><?php echo $this->Html->link(__("Ajouter un ami"), array('controller' => 'friends', 'action' => 'add')); ?></li>
-		         <li><?php echo $this->Html->link(__("Envoyer un message"), array('controller' => 'messages', 'action' => 'add')); ?></li>
-		          <li><?php echo $this->Html->link(__("Ma messagerie"), array('controller' => 'messages', 'action' => 'index')); ?></li>
-		        <li><?php echo $this->Html->link(__("Mon profil"), array('controller' => 'users', 'action' => 'view/'.AuthComponent::user('id'))); ?></li>
-		        <li><?php echo $this->Html->link(__("Voir les utilisateurs"), array('controller' => 'users', 'action' => 'index')); ?></li>
-		<?php endif; ?>
-		</ul>
-		<ul class="nav secondary-nav">
-		<?php if(AuthComponent::user('id')): ?>
-		    <li><?php echo $this->Html->link(__('Se déconnecter'), array('controller' => 'users', 'action' => 'logout')); ?></li>
-		    <?php if(AuthComponent::user('group_id')==1): ?>
-		        <li><?php echo $this->Html->link(__('Espace admin'), array('controller' => 'admin', 'action' => 'quotes')); ?></li>
-		      <?php endif; ?>
-		<?php else: ?> 
-		    <li><?php echo $this->Html->link(__('Se connecter'), array('controller' => 'users', 'action' => 'login')); ?></li>
-		    <li><?php echo $this->Html->link("S'inscrire",array('action'=>'add','controller'=>'users')); ?></li>
-		    <?php endif; ?>
-		</ul>
 
+	<div id="container">
 
 		<div id="content">
 
@@ -85,19 +75,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-
-	</div><!-- /.container-->
-	<footer>
-		<div class="footer-content">
-			<h3>Follow us on :</h3>
-			<ul>
-				<li><a href="#"><img src="img/facebook.png"></a></li>
-				<li><a href="#"><img src="img/twitter.png"></a></li>
-				<li><a href="#"><img src="img/google.png"></a></li>
-				<li><a href="#"><img src="img/youtube.png"></a></li>
-				<li><a href="#"><img src="img/fluxrss.png"></a></li>
-			</ul>
+		<div id="footer">
+			<?php echo $this->Html->link(
+					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
+					'http://www.cakephp.org/',
+					array('target' => '_blank', 'escape' => false)
+				);
+			?>
 		</div>
-	</footer>
+	</div>
+	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

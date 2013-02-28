@@ -11,7 +11,7 @@ class UsersController extends AppController {
 
 public function beforeFilter(){
 	parent::beforeFilter();
-	$this->Auth->allow('add');
+	$this->Auth->allow('add','pick');
 }
 
 public function isAuthorized($user){
@@ -60,6 +60,22 @@ public function logout() {
 		$this->set('users', $this->paginate());
 	}
 
+
+	public function pick($id = null, $id_owner= null ){
+		debug($id);
+		debug($id_owner);
+		$this->request->data['User']['id'] = $id_owner;
+		$this->request->data['User']['picture_id'] = $id;
+		debug($this->request->data);
+			if ($this->User->save($this->request->data['User'])) {
+				$this->Session->setFlash(__('Photo de profil changée'));
+				$this->redirect(array('action' => 'edit', 'action' => 'edit', $id_owner));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+
+
+	}
 /**
  * view method
  *
@@ -110,7 +126,6 @@ public function logout() {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			debug($this->request->data);
-			die();
 			if ($this->User->save($this->request->data['User'])) {
 				$this->Session->setFlash(__('The user has been saved'));
 				$this->redirect(array('action' => 'index'));

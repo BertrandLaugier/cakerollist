@@ -2,17 +2,17 @@
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
 		<legend><?php echo __('Add User'); ?></legend>
-		<?php
-			echo $this->Form->input('username');
-			echo $this->Form->input('password');
-			echo $this->Form->input('email');
-			echo $this->Form->input('background');
-			echo $this->Form->input('race_id');
-			echo $this->Form->input('picture_id');
-			echo $this->Form->input('level');
-			echo $this->Form->input('user_pseudo');
-		?>
-		<?php echo $this->Form->end(__('Submit')); ?>
+	<?php
+		echo $this->Form->input('username');
+		echo $this->Form->input('password');
+		echo $this->Form->input('email');
+		echo $this->Form->input('background');
+		echo $this->Form->input('group_id');
+		echo $this->Form->input('race_id');
+		echo $this->Form->input('level');
+		echo $this->Form->input('user_pseudo');
+	?>
+	<?php echo $this->Form->end(__('Submit')); ?>
 	</fieldset>
 </div>
 

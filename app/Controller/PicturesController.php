@@ -38,14 +38,19 @@ class PicturesController extends AppController {
  * @return void
  */
 	public function add() {
+		$users = $this->Picture->User->find('list');
+		$id = AuthComponent::user('id');
 		if ($this->request->is('post')) {
+			$this->request->data['Picture']['user_id']= $id;
 			$this->Picture->create();
 			if ($this->Picture->save($this->request->data)) {
 				$this->Session->setFlash(__('The picture has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'users', 'action' => 'edit', $id));
 			} else {
 				$this->Session->setFlash(__('The picture could not be saved. Please, try again.'));
 			}
+			
+
 		}
 	}
 
