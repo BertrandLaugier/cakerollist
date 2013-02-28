@@ -67,7 +67,7 @@
 	<?php if((AuthComponent::user('id') && ($friend['Friend']['user_id'] == AuthComponent::user('id')) || $friend['Amis']['id'] == AuthComponent::user('id')) && $friend['Friend']['valid'] == 1) : ?>
 	<tr>
 
-		<td><?php echo $this->Html->link($friend['User']['username'], array('controller' => 'users', 'action' => 'view', $friend['User']['id'])); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($friend['Amis']['username'], array('controller' => 'users', 'action' => 'view', $friend['Amis']['id'])); ?>&nbsp;</td>
 		<td><?php echo h($friend['Friend']['message']); ?>&nbsp;</td>
 		<td><?php echo h($friend['Friend']['created']); ?>&nbsp;</td>
 		<td class="actions">
