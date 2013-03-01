@@ -10,7 +10,7 @@ nav ul li{line-height: 40px;width: 120px;height: 40px;float: left;}
 nav ul li a{
 	text-decoration: none;
 	font-family: @Mania;
-	color: #FFD800;
+	color: #D3A74E;
 	text-align: center;
 	width: 120px;
 	display: block;
@@ -19,12 +19,12 @@ nav ul li a{
 	-moz-transition:0.5s ease all;
 	-ms-transition:0.5s ease all;
 	-o-transition:0.5s ease all;
-}
+} 
 /*nav ul li:hover{background: url(../img/bg-wood.png) repeat;box-shadow: inset 0 0 10px black;}*/
 nav ul li a:hover{text-shadow: 0px 0px 20px #FFFA00;color: #FFF0A5;}
 #container{width: 960px;margin: auto;padding-top: 60px;}
 
-table{background:rgba(255,230,91,0.2);}
+table{background:rgba(255,255,255,0.5);}
 table tr th{
 	background: url(../img/dark_leather.png) repeat;
 	border: 1px solid #1E1008;
@@ -44,19 +44,233 @@ form{width: 400px;
 	margin: 10px 10px 0 0px;
 	float: left;
 	background:url(../img/bg-wood-hover.png) repeat;
+	background-size: cover;
 	border-radius:5px;
 	border: 1px solid #1E1008;
 	padding: 0 0 20px 0;
 	box-shadow: inset 0 0 10px black;
 }
 fieldset{width: 400px;}
-fieldset legend{color: white;width: 400px;height: 30px;line-height: 30px;font-family: @Mania;text-align: center;background: url(../img/dark_leather.png) repeat;border-bottom: 1px solid black;margin-bottom: 10px;box-shadow: inset 0 -5px 10px black;}
-form label{width: 200px;text-align: right;float:left;margin:8px 5px 0 0;font-family: @Pirata;text-shadow:1px 1px 1px #1E1008;}
-form textarea{margin-left: 0px;max-width: 180px;background-color: #FFF3B7;border: 1px solid #1E1008;}
-form input{margin:10px 0 0 0;border-radius: 5px;border: 1px solid #1E1008;background-color: #FFF3B7;}
-form input[type="submit"]{border: solid 1px black;width: 100px;padding:0px 0 0px 0;margin: 25px 0 0 160px;font-family: @Mania;font-size: 18px;background-color: #1E1008;color: white;}
+fieldset legend{color: white;
+	width: 400px;
+	height: 30px;
+	line-height: 30px;
+	font-family: @Mania;
+	text-align: center;
+	background: url(../img/dark_leather.png) repeat;
+	border-bottom: 1px solid black;
+	margin-bottom: 10px;
+	box-shadow: inset 0 -5px 10px black;
+}
+form label{
+	display: block;
+	margin:8px 5px 0 60px;
+	font-family: @Pirata;
+	text-shadow:2px 2px 3px black;
+	color: @beige;
+	font-size: 1.5em;
+	float: left;
+}
+form textarea{
+	border-radius: 8px;
+	margin-left: 0px;
+	max-width: 180px;
+	background-color: @beige;
+	border: 1px solid #1E1008;
+	box-shadow: inset 0 0 45px black;
+	margin: 10px 0 0 0;
+	-webkit-transition:0.25s ease all;
+	-moz-transition:0.25s ease all;
+	-ms-transition:0.25s ease all;
+	-o-transition:0.25s ease all;
+}
+form textarea:focus{
+	box-shadow: inset 0 0 5px black;
+}
+form input{
+	width: 200px;
+	float: left;
+	display: block;
+	border-radius: 8px;
+	margin:10px 0 0 0;
+	height: 25px;
+	border: 1px solid #1E1008;
+	background-color: @beige;
+	box-shadow: inset 0 0 25px black;
+	-webkit-transition:0.25s ease all;
+	-moz-transition:0.25s ease all;
+	-ms-transition:0.25s ease all;
+	-o-transition:0.25s ease all;
+}
+form input:focus{
+	box-shadow: inset 0 0 5px black;
+}
+form input[type="submit"]{
+	border: solid 1px black;
+	width: 100px;
+	margin: 25px 0 0 160px;
+	font-family: @Mania;
+	font-size: 18px;
+	background-color: #1E1008;
+	color: #D3A74E;
+	text-shadow:inset 0 0 5px black;
+	-webkit-transition:0.5s ease all;
+	-moz-transition:0.5s ease all;
+	-ms-transition:0.5s ease all;
+	-o-transition:0.5s ease all;
 
+}
+form input[type="submit"]:hover{text-shadow: 0px 0px 20px #FFFA00;color: #FFF0A5;}
 
+form select{
+	background-color: @beige;
+	border: solid 1px #1E1008;
+	float: left;
+	margin: 10px 0 0 0;
+}
+
+/** Notices and Errors **/
+.message {
+	clear: both;
+	color: #fff;
+	font-size: 140%;
+	font-weight: bold;
+	margin: 0 0 1em 0;
+	padding: 5px;
+}
+
+.actions{
+	background: url(../img/dark_wood.png);
+	width: 150px;
+	display: block;
+	float: left;
+	text-align: center;
+	padding: 0 0 20px 0;
+	border: 2px solid black;
+}
+.actions a{
+text-decoration: none;
+height: 30px;
+line-height: 30px;
+font-family: @Mania;
+color: white;
+-webkit-transition:0.5s ease all;
+-moz-transition:0.5s ease all;
+-ms-transition:0.5s ease all;
+-o-transition:0.5s ease all;
+}
+.actions a:hover{
+	text-shadow:0 0 10px white;
+	color: black;
+}
+
+.success,
+.message,
+.cake-error,
+.cake-debug,
+.notice,
+p.error,
+.error-message {
+	background: #ffcc00;
+	background-repeat: repeat-x;
+	background-image: -moz-linear-gradient(top, #ffcc00, #E6B800);
+	background-image: -ms-linear-gradient(top, #ffcc00, #E6B800);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#E6B800));
+	background-image: -webkit-linear-gradient(top, #ffcc00, #E6B800);
+	background-image: -o-linear-gradient(top, #ffcc00, #E6B800);
+	background-image: linear-gradient(top, #ffcc00, #E6B800);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	margin-bottom: 18px;
+	padding: 7px 14px;
+	color: #404040;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.success,
+.message,
+.cake-error,
+p.error,
+.error-message {
+	font-family: @Pirata;
+	font-weight: 200;
+	clear: both;
+	color: #fff;
+	background: url(../img/bg-wood.png);
+	border: 1px solid rgba(0, 0, 0, 0.5);/*
+	background-repeat: repeat-x;
+	background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
+	background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: linear-gradient(top, #ee5f5b, #c43c35);*/
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+.success {
+	clear: both;
+	color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	background: #3B8230;
+	background-repeat: repeat-x;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
+	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -ms-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -o-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: linear-gradient(top, #76BF6B, #3B8230);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+p.error {
+	/*font-family: Monaco, Consolas, Courier, monospace;*/
+	font-family: @Pirata;
+	font-size: 120%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+p.error em {
+	font-weight: normal;
+	line-height: 140%;
+}
+.notice {
+	color: #000;
+	display: block;
+	font-size: 120%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+.success {
+	color: #fff;
+}
+
+.secondary-nav{display: block;float: left;}
+.secondary-nav li a{
+	background:url(../img/dark-wood-background.jpeg);
+	border: 1px solid #350D08;
+	box-shadow: inset 1px 1px 5px #7D6B50;
+	font-family: @Mania;
+	margin: 5px 10px 10px 0;
+	display: block;
+	height: 40px;
+	width: 130px;
+	color: #D3A74E;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 40px;
+	text-decoration: none;
+	-webkit-transition:0.25s ease all;
+	-moz-transition:0.25s ease all;
+	-ms-transition:0.25s ease all;
+	-o-transition:0.25s ease all;
+}
+.secondary-nav li a:hover{
+	text-shadow: 0px 0px 20px #FFFA00;color: #FFF0A5;
+}
 
 footer{}
 .footer-content{width: 960px;margin: auto;}
