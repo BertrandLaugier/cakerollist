@@ -13,7 +13,7 @@ App::uses('CakeEventListener','Event');
 
 		public function userSendMessage($event){
 			$user_id = $event->subject()->data['Message']['user_id'];
-			$message = ClassRegistry:: init('Message');
+			$message = ClassRegistry::init('Message');
 			$count = $message->find('first', array(
 				'conditions' => array('User.id'=> $user_id)
 			));
@@ -44,7 +44,7 @@ App::uses('CakeEventListener','Event');
 			
 
 		
-			$this->checkLevel($xp_id,$new_xp);
+			$this->checkLevel($xp_id,$user_id,$new_xp);
 		
 		}
 		/**
@@ -55,7 +55,7 @@ App::uses('CakeEventListener','Event');
 		 * @return to determine
 		 * @author Remy 
 		 */
-		public function checkLevel($xp_id,$new_xp){
+		public function checkLevel($xp_id,$user_id,$new_xp){
 			
 			// Déclaration des paliers pour chaque niveau
 			$levels = array(0,100,150,220,350,500,1000);
@@ -66,17 +66,18 @@ App::uses('CakeEventListener','Event');
 
 					// Reset l'xp quand on gagne un niveau
 					$new_xp = 0;	
-					
+				
+
 					//Sauvegarde l'xp et le niveau de l'utilisateur
-					//if ($this->request->is('post')) {
-					//	$this->Message->create();
-					//	$this->request->data['Message']['user_id'] = $this->Auth->user('id');
-					//	if ($this->Message->save($this->request->data)) {
-					//		$this->Session->setFlash(__('The message has been saved'));
-					//		$this->redirect(array('action' => 'index'));
-					//}
-					debug($xp_id);
-					die();					
+					$user = ClassRegistry::init('User');
+					
+					
+			
+						$user->id = $user_id;
+						$user->save(array(
+							'xp_id' => $xp_id,
+							'xp_nb' => $new_xp
+						));			
 				}
 				// Sauvegarder l'xp si l'utilisateur ne gagne pas de niveau
 				else{
