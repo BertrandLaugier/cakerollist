@@ -1,11 +1,6 @@
 <div class="users view">
 <h2><?php  echo __('User'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Username'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['username']); ?>
@@ -57,6 +52,10 @@
 		</span>
 		</span>
 		</div>
+		<dt><?php echo __('Langue'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($user['Lang']['name'], array('controller' => 'langs', 'action' => 'view', $user['Lang']['id'])); ?>
+			&nbsp;
 		</dd>
 		<dt><?php echo __('Picture'); ?></dt>
 		<dd>
@@ -88,5 +87,6 @@
 		<li><?php echo $this->Html->link(__('New Race'), array('controller' => 'races', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Pictures'), array('controller' => 'pictures', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Picture'), array('controller' => 'pictures', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Demande d\'ami'), array('controller' => 'friends', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

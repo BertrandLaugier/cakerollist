@@ -1,12 +1,11 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Race Model
+ * Lang Model
  *
- * @property Lang $Lang
- * @property User $User
+ * @property Race $Race
  */
-class Race extends AppModel {
+class Lang extends AppModel {
 
 /**
  * Display field
@@ -14,9 +13,24 @@ class Race extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
-public $actAs = array('Containable','Media.Media');
+
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Race' => array(
+			'className' => 'Race',
+			'foreignKey' => 'race_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 /**
  * hasMany associations
@@ -24,19 +38,6 @@ public $actAs = array('Containable','Media.Media');
  * @var array
  */
 	public $hasMany = array(
-		'Lang' => array(
-			'className' => 'Lang',
-			'foreignKey' => 'race_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'race_id',
@@ -51,5 +52,4 @@ public $actAs = array('Containable','Media.Media');
 			'counterQuery' => ''
 		)
 	);
-
 }

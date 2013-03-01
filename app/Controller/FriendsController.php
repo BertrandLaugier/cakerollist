@@ -7,6 +7,55 @@ App::uses('AppController', 'Controller');
  */
 class FriendsController extends AppController {
 
+
+public function beforeFilter(){
+	parent::beforeFilter();
+	$this->Auth->allow('accept');
+}
+
+	public function isAuthorized($user){
+		if($this->action=='add'){
+			if(isset($user['group_id']) && $user['group_id'] > 0)
+				return true;
+
+		}
+
+		if(in_array($this->action, array('edit','delete'))){
+			if(isset($user['group_id']) && $user['group_id'] == 2)
+				return true;
+
+			else{
+				$quote_id = $this->request->params['pass'][0];
+				$user_id = $user['id'];
+					                                
+				if($this->Quote->isOwnedBy($quote_id,$user_id)){
+   					 return true;
+			}
+
+			}
+		}
+		return parent::isAuthorized($user);
+
+	}
+
+	public function accept($id=null){
+
+		$this->Friend->id = $id;
+		$this->Friend->save(
+			array(
+				'Friend'=>array(
+					'valid'=>1
+				)
+			)
+		);
+
+		$this->Session->setFlash(__("La demande d'ami a été acceptée"));
+		$this->redirect(array('action' => 'index'));
+
+	
+	}
+
+
 /**
  * index method
  *
@@ -16,34 +65,6 @@ class FriendsController extends AppController {
 		$this->Friend->recursive = 0;
 		$this->set('friends', $this->paginate());
 	}
-
-
-		public function isAuthorized($user){
-		if($this->action=='add'){
-			if(isset($user['group_id']) && $user['group_id'] > 0)
-				return true;
-
-		}
-
-			if(in_array($this->action, array('edit','delete'))){
-				if(isset($user['group_id']) && $user['group_id'] == 2)
-					return true;
-
-				else{
-					$quote_id = $this->request->params['pass'][0];
-					$user_id = $user['id'];
-					                                
-					if($this->Quote->isOwnedBy($quote_id,$user_id)){
-       					 return true;
-				}
-
-				}
-			}
-
-
-	return parent::isAuthorized($user);
-}
-
 
 /**
  * view method
@@ -70,7 +91,7 @@ class FriendsController extends AppController {
 			$this->Friend->create();
 			$this->request->data['Friend']['user_id'] = $this->Auth->user('id');
 			if ($this->Friend->save($this->request->data)) {
-				$this->Session->setFlash(__('The friend has been saved'));
+				$this->Session->setFlash(__('La requète à été envoyée'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The friend could not be saved. Please, try again.'));
@@ -80,6 +101,7 @@ class FriendsController extends AppController {
 		$friends = $this->Friend->User->find('list');
 		$this->set(compact('users','friends'));
 	}
+
 
 /**
  * edit method

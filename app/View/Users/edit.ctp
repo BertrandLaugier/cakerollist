@@ -6,7 +6,6 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('background');
 
-
 		?>
 		<?php if  ($this->request->data['Picture']['url']) :?>
 		<img src="<?php echo $this->request->data['Picture']['url']; ?>" width="200px"/><br /><br />
@@ -22,8 +21,13 @@
 		<?php endforeach; ?>
 
 
-
-
+<?php
+		echo $this->Form->input('group_id');
+		echo $this->Form->input('race_id');
+		echo $this->Form->input('pictures');
+		echo $this->Form->input('level');
+		echo $this->Form->input('user_pseudo');
+	?>
 	</fieldset>
 
 <?php echo $this->Html->link(__('Ajouter une photo'), array('controller' => 'pictures', 'action' => 'add')); ?>

@@ -72,6 +72,29 @@ p {
 	margin: 0 0 1em 0;
 }
 
+#container h3 a{
+	color: #fff;
+	text-decoration: none;
+}
+
+#container h3 a:hover{
+	color: #ddd;
+}
+
+.nav li a{
+	margin-top: 2px;
+	color:#fff;
+	text-decoration: none;
+	list-style: none;
+}
+
+.nav li a:hover{
+	margin-top: 2px;
+	color:#ddd;
+	text-decoration: none;
+	list-style: none;
+}
+
 /** Layout **/
 #container {
 	text-align: left;

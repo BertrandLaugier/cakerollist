@@ -1,7 +1,17 @@
 <div class="friends view">
 <h2><?php  echo __('Friend'); ?></h2>
 	<dl>
-		<dt><?php echo __('Nom ami'); ?></dt>
+	<!-- 		<dt><?php echo __('Id'); ?></dt>
+		<dd>
+			<?php echo h($friend['Friend']['id']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Frd Id'); ?></dt>
+		<dd>
+			<?php echo h($friend['Friend']['friend_id']); ?>
+			&nbsp;
+		</dd> -->
+		<dt><?php echo __('Nom de l\'ami'); ?></dt>
 		<dd>
 			<?php echo h($friend['Amis']['username']); ?>
 			&nbsp;
