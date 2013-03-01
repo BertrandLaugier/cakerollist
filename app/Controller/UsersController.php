@@ -14,6 +14,10 @@ public function beforeFilter(){
 	$this->Auth->allow('add','pick');
 }
 
+public function dice(){
+	$rand_nb= $this->randomNumber = rand(1,20);
+}
+
 public function isAuthorized($user){
 
 	if($this->action=='login' || $this->action=='logout' || $this->action=='view' )
@@ -73,8 +77,6 @@ public function logout() {
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
-
-
 	}
 /**
  * view method

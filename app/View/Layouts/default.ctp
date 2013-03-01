@@ -57,7 +57,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                 <?php if(AuthComponent::user('id')): ?>
                     <li><?php echo $this->Html->link(__('Se déconnecter'), array('controller' => 'users', 'action' => 'logout')); ?></li>
                     <?php if(AuthComponent::user('group_id')==1): ?>
-                        <li><?php echo $this->Html->link(__('Espace admin'), array('controller' => 'admin', 'action' => 'quotes')); ?></li>
+                        <li><?php echo $this->Html->link(__('Espace admin'), array('controller' => 'admin', 'action' => 'index')); ?></li>
                       <?php endif; ?>
                 <?php else: ?> 
                     <li><?php echo $this->Html->link(__('Se connecter'), array('controller' => 'users', 'action' => 'login')); ?></li>
