@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `work_id` int(10) unsigned DEFAULT NULL,
   `xp_id` int(10) unsigned DEFAULT '1',
   `xp_nb` int(10) unsigned DEFAULT NULL,
-  `user_pseudo` varchar(50) DEFAULT NULL
+  `user_pseudo` varchar(50) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
