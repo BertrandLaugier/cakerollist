@@ -54,6 +54,13 @@ public function beforeSave($options = array()) {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Lang' => array(
+			'className' => 'Lang',
+			'foreignKey' => 'race_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 }

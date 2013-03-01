@@ -41,6 +41,11 @@
 			<?php echo $this->Html->link($user['Race']['name'], array('controller' => 'races', 'action' => 'view', $user['Race']['id'])); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Langue'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($user['Lang']['name'], array('controller' => 'langs', 'action' => 'view', $user['Lang']['id'])); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Picture'); ?></dt>
 		<dd>
 			<img src="<?php echo h($user['Picture']['url']); ?>" width="100px"/>
