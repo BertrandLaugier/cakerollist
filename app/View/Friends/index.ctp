@@ -57,25 +57,30 @@
 <!-- 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_id'); ?></th> -->
 			<th><?php echo $this->Paginator->sort('friend_id','Amis'); ?></th>
-			<th><?php echo $this->Paginator->sort('message'); ?></th>
+			<th><?php echo $this->Paginator->sort('message','Demande'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 
 
 	<?php foreach ($friends as $friend): ?>
-	<?php if((AuthComponent::user('id') && ($friend['Friend']['user_id'] == AuthComponent::user('id')) || $friend['Amis']['id'] == AuthComponent::user('id')) && $friend['Friend']['valid'] == 1) : ?>
-	<tr>
-
+<?php if((AuthComponent::user('id') && ($friend['Friend']['user_id'] == AuthComponent::user('id')) || $friend['Amis']['id'] == AuthComponent::user('id')) && $friend['Friend']['valid'] == 1) : ?>
+<tr>
+	<?php if($friend['Friend']['user_id'] == AuthComponent::user('id')) { ?>
 		<td><?php echo $this->Html->link($friend['Amis']['username'], array('controller' => 'users', 'action' => 'view', $friend['Amis']['id'])); ?>&nbsp;</td>
-		<td><?php echo h($friend['Friend']['message']); ?>&nbsp;</td>
-		<td><?php echo h($friend['Friend']['created']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('Voir'), array('action' => 'view', $friend['Friend']['id'])); ?>
-		<!-- 	<?php echo $this->Html->link(__('Accepter'), array('action' => 'validate', $friend['Friend']['id'])); ?> -->
-			<?php echo $this->Form->postLink(__('Supprimer'), array('action' => 'delete', $friend['Friend']['id']), null, __('Are you sure you want to delete # %s?', $friend['Friend']['id'])); ?>
-		</td>
-	</tr>
+		<td><p>Vous aviez envoyé :</p><?php echo h($friend['Friend']['message']); ?>&nbsp;</td>
+	<?php }else{ ?>
+		<td><?php echo $this->Html->link($friend['User']['username'], array('controller' => 'users', 'action' => 'view', $friend['User']['id'])); ?>&nbsp;</td>
+		<td><p>Vous aviez reçu :</p><?php echo h($friend['Friend']['message']); }?>&nbsp;</td>
+	
+	
+	<td><?php echo h($friend['Friend']['created']); ?>&nbsp;</td>
+	<td class="actions">
+		<?php echo $this->Html->link(__('Voir'), array('action' => 'view', $friend['Friend']['id'])); ?>
+	<!-- 	<?php echo $this->Html->link(__('Accepter'), array('action' => 'validate', $friend['Friend']['id'])); ?> -->
+		<?php echo $this->Form->postLink(__('Supprimer'), array('action' => 'delete', $friend['Friend']['id']), null, __('Are you sure you want to delete # %s?', $friend['Friend']['id'])); ?>
+	</td>
+</tr>
 <?php endif; ?>
 <?php endforeach; ?>
 
