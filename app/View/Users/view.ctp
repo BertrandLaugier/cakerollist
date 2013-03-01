@@ -41,6 +41,23 @@
 			<?php echo $this->Html->link($user['Race']['name'], array('controller' => 'races', 'action' => 'view', $user['Race']['id'])); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Niveau'); ?></dt>
+		<dd>
+		<div id="page">
+		<?php
+		/*calcule le pourcentage*/
+		$xp = 200;
+		$level_up2 = 300;
+		$percent = (($xp*100)/$level_up2);
+		?>
+		<!-- Barre d'xp -->
+		<span class="bar">
+		<span class="progression" style="width: <?php echo $percent ?>%">
+		<span title="<?php echo $percent ?>%" class="precent"></span>
+		</span>
+		</span>
+		</div>
+		</dd>
 		<dt><?php echo __('Picture'); ?></dt>
 		<dd>
 			<img src="<?php echo h($user['Picture']['url']); ?>" width="100px"/>
