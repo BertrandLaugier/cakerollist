@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Mar 26 Février 2013 à 19:27
+-- Généré le : Ven 01 Mars 2013 à 17:24
 -- Version du serveur: 5.5.20
 -- Version de PHP: 5.3.10
 
@@ -32,15 +32,18 @@ CREATE TABLE IF NOT EXISTS `friends` (
   `friend_id` int(11) NOT NULL,
   `message` text NOT NULL,
   `created` datetime NOT NULL,
+  `valid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `friends`
 --
 
-INSERT INTO `friends` (`id`, `user_id`, `friend_id`, `message`, `created`) VALUES
-(3, 4, 1, 'aaaa', '2013-02-26 15:00:19');
+INSERT INTO `friends` (`id`, `user_id`, `friend_id`, `message`, `created`, `valid`) VALUES
+(3, 4, 1, 'dazdadzad', '2013-02-26 17:47:28', 0),
+(8, 5, 3, 'Bien le bonjour prince, souhaitez vous partagez mon aventure ?', '2013-02-27 15:01:54', 0),
+(10, 4, 6, 'Bonjour noble paladin, rejoignez moi pour participer Ã  de grandes quÃªtes.', '2013-02-27 17:16:16', 1);
 
 -- --------------------------------------------------------
 
@@ -62,6 +65,30 @@ INSERT INTO `groups` (`id`, `name`) VALUES
 (1, 'admin'),
 (2, 'peon'),
 (3, 'hÃ©ros');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `langs`
+--
+
+CREATE TABLE IF NOT EXISTS `langs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `race_id` int(11) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `info` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `langs`
+--
+
+INSERT INTO `langs` (`id`, `race_id`, `name`, `info`) VALUES
+(1, 1, 'Le gobelin', 'Dialecte des gobelins'),
+(2, 2, 'L''elfe', 'Dialecte elfique'),
+(3, 3, 'L''humain', 'Dialecte humain'),
+(4, 4, 'Le nain', 'Dialecte nain');
 
 -- --------------------------------------------------------
 
@@ -138,7 +165,8 @@ INSERT INTO `races` (`id`, `name`, `description`) VALUES
 
 --
 -- Structure de la table `users`
---
+-- user_lang_id should disappear some days
+-- 
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -148,11 +176,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
   `background` text,
-  `group_id` int(10) DEFAULT NULL,
-  `race_id` int(10) DEFAULT NULL,
-  `picture_id` int(10) DEFAULT NULL,
-  `xp_id` int(10) DEFAULT '1',
-  `user_pseudo` varchar(50) DEFAULT NULL,
+  `group_id` int(10) unsigned DEFAULT NULL,
+  `race_id` int(10) unsigned DEFAULT NULL,
+  `user_lang_id` int(10) NOT NULL,
+  `picture_id` int(10) unsigned DEFAULT NULL,
+  `work_id` int(10) unsigned DEFAULT NULL,
+  `xp_id` int(10) unsigned DEFAULT '1',
+  `xp_nb` int(10) unsigned DEFAULT NULL,
+  `user_pseudo` varchar(50) DEFAULT NULL
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
@@ -160,11 +191,44 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `created`, `updated`, `background`, `group_id`, `race_id`, `picture_id`, `xp_id`, `user_pseudo`) VALUES
-(1, 'bob', '37de4f3ae6ed019aaebb68e1770ed0db03e13fdc', 'bob@bob.com', '2013-02-25 16:11:49', '2013-02-26 09:52:45', 'je suis un gobelin ! et j''aime les frites !', 2, 1, 3, 1, 'BobLeGob'),
-(2, 'Adele', '37de4f3ae6ed019aaebb68e1770ed0db03e13fdc', 'adele@mail.com', '2013-02-25 16:15:03', '2013-02-26 09:53:35', 'Je suis une elfe vraiment trÃ¨s jolie 90-65-85', 2, 2, NULL, 2, 'Eldorine'),
-(3, 'JR', '56ca5510548ce3defe704e84cca5f646dec28897', 'jr@mail.com', '2013-02-25 16:15:49', '2013-02-26 17:22:16', 'Je suis un fier guerrier d''Irul, mon royaume, (je suis un prince, inclinez vous !)', 3, 3, 1, 3, 'JR le prince Corse'),
-(5, 'Blaugier', '37de4f3ae6ed019aaebb68e1770ed0db03e13fdc', 'blaugier@gmail.com', '2013-02-25 22:03:57', '2013-02-26 16:07:51', 'Je suis l''admin, j''ai tous les pouvoirs ! :)', 1, 3, NULL, 5, 'Echo');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `created`, `updated`, `background`, `group_id`, `race_id`, `user_lang_id`, `picture_id`, `xp_id`, `xp_nb`, `work_id`, `user_pseudo`) VALUES
+(1, 'bob', '37de4f3ae6ed019aaebb68e1770ed0db03e13fdc', 'bob@bob.com', '2013-02-25 16:11:49', '2013-02-26 09:52:45', 'je suis un gobelin ! et j''aime les frites !', 2, 1, 0, 3, 1, NULL, 1, 'BobLeGob'),
+(2, 'Adele', '37de4f3ae6ed019aaebb68e1770ed0db03e13fdc', 'adele@mail.com', '2013-02-25 16:15:03', '2013-02-26 09:53:35', 'Je suis une elfe vraiment trÃ¨s jolie 90-65-85', 2, 2, 0, NULL, 2, NULL, 1, 'Eldorine'),
+(3, 'JR', '56ca5510548ce3defe704e84cca5f646dec28897', 'jr@mail.com', '2013-02-25 16:15:49', '2013-02-26 17:22:16', 'Je suis un fier guerrier d''Irul, mon royaume, (je suis un prince, inclinez vous !)', 3, 3, 0, 1, 3, NULL, 2, 'JR le prince Corse'),
+(5, 'Blaugier', '37de4f3ae6ed019aaebb68e1770ed0db03e13fdc', 'blaugier@gmail.com', '2013-02-25 22:03:57', '2013-02-26 16:07:51', 'Je suis l''admin, j''ai tous les pouvoirs ! :)', 1, 3, 0, NULL, 5, NULL, 2, 'Echo');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user_langs`
+--
+
+CREATE TABLE IF NOT EXISTS `user_langs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `lang_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `works`
+--
+
+CREATE TABLE IF NOT EXISTS `works` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `workname` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `works`
+--
+
+INSERT INTO `works` (`id`, `workname`) VALUES
+(1, 'assassin'),
+(2, 'pretre');
 
 -- --------------------------------------------------------
 
