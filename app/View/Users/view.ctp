@@ -36,17 +36,22 @@
 			<?php echo $this->Html->link($user['Race']['name'], array('controller' => 'races', 'action' => 'view', $user['Race']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Niveau'); ?></dt>
+		<dt><?php echo __('Niveau'); ?> <?php echo $user['User']['xp_id']; ?></dt>
 		<dd>
 		<div id="page">
 		<?php
+		// Déclaration des paliers pour chaque niveau
+		$levels = array(0,100,150,220,350,500,1000);
+		// Récupère le nombre d'xp de l'utilisateur et l'xp nécessaire pour level up 
+		$xp = $user['User']['xp_nb'];
+		$level = $user['User']['xp_id'];
+		$level_up = $levels[$level];
 		/*calcule le pourcentage*/
-		$xp = 200;
-		$level_up2 = 300;
-		$percent = (($xp*100)/$level_up2);
+		$percent = (($xp*100)/$level_up);
 		?>
 		<!-- Barre d'xp -->
 		<span class="bar">
+		<span class="niveau"><?php echo $user['User']['xp_nb']; ?> xp / <?php echo $level_up; ?>xp</span>
 		<span class="progression" style="width: <?php echo $percent ?>%">
 		<span title="<?php echo $percent ?>%" class="precent"></span>
 		</span>
