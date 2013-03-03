@@ -14,17 +14,17 @@ App::uses('CakeEventListener','Event');
 		public function userSendMessage($event){
 			$user_id = $event->subject()->data['Message']['user_id'];
 			$message = ClassRegistry::init('Message');
-			$count = $message->find('first', array(
+			$message_info = $message->find('first', array(
 				'conditions' => array('User.id'=> $user_id)
 			));
 			
 			// Recupère la quantité d'xp de l'utilisateur
-			$xp_nb = $count['User']['xp_nb'];
+			$xp_user = $message_info['User']['xp_nb'];
 			// Recupère le niveau de l'utilisateur
-			$xp_id = $count['User']['xp_id'];
+			$level = $message_info['User']['xp_id'];
 
 
-			$this->addXP($xp_id,$user_id,$xp_nb,$count,10);
+			$this->addXP($level,$user_id,$xp_user,10);
 		}
 		
 		/**
@@ -36,15 +36,15 @@ App::uses('CakeEventListener','Event');
 		 * @return void
 		 * @author Remy
 		 */
-		public function addXP($xp_id,$user_id,$xp_nb,$count,$xp){
+		public function addXP($level,$user_id,$xp_user,$add_xp){
 			
 			// Ajoute 10 d'xp à l'envoie d'un message
-			$new_xp= $xp_nb + $xp;
+			$new_xp_user= $xp_user + $add_xp;
 
 			
 
 		
-			$this->checkLevel($xp_id,$user_id,$new_xp);
+			$this->checkLevel($level,$user_id,$new_xp_user);
 		
 		}
 		/**
@@ -55,33 +55,37 @@ App::uses('CakeEventListener','Event');
 		 * @return to determine
 		 * @author Remy 
 		 */
-		public function checkLevel($xp_id,$user_id,$new_xp){
+		public function checkLevel($level,$user_id,$new_xp_user){
 			
 			// Déclaration des paliers pour chaque niveau
 			$levels = array(0,100,150,220,350,500,1000);
 
    				// Vérifie si l'xp de l'utilisateur correspond au palier pour gagner un niveau
-				if($new_xp == $levels[$xp_id]){
-					$xp_id = $xp_id+1;
+				if($new_xp_user == $levels[$level]){
+					$level = $level+1;
 
 					// Reset l'xp quand on gagne un niveau
-					$new_xp = 0;	
+					$new_xp_user = 0;	
 				
 
 					//Sauvegarde l'xp et le niveau de l'utilisateur
 					$user = ClassRegistry::init('User');
-					
-					
-			
+								
 						$user->id = $user_id;
 						$user->save(array(
-							'xp_id' => $xp_id,
-							'xp_nb' => $new_xp
+							'xp_id' => $level,
+							'xp_nb' => $new_xp_user
 						));			
 				}
 				// Sauvegarder l'xp si l'utilisateur ne gagne pas de niveau
 				else{
-
+					
+					$user = ClassRegistry::init('User');
+								
+						$user->id = $user_id;
+						$user->save(array(
+							'xp_nb' => $new_xp_user
+						));
 				}
 		}		
 	}
