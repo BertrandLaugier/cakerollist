@@ -11,7 +11,7 @@
 			<th><?php echo $this->Paginator->sort('group_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('race_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('picture_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('level'); ?></th>
+			<th><?php echo $this->Paginator->sort('Niveau'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_pseudo'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -32,7 +32,7 @@
 		<td>
 			<img src="<?php echo h($user['Picture']['url']); ?>" width="100px"/>
 		</td>
-		<td><?php echo h($user['Xp']['id']-1); ?>&nbsp;</td>
+		<td><?php echo h($user['Xp']['id']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['user_pseudo']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Demande d\'ami'), array('controller' => 'friends', 'action' => 'add')); ?>

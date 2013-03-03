@@ -67,11 +67,6 @@
 			<img src="<?php echo h($user['Picture']['url']); ?>" width="100px"/>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Level'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['xp_id']-1); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('User Pseudo'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['user_pseudo']); ?>
